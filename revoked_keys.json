@@ -1,4 +1,8 @@
 {
-  "revoked": [],
-  "reason": {}
+  "revoked": [
+    "GUQV064M"
+  ],
+  "reason": {
+    "GUQV064M": "Khóa bởi admin - aaa"
+  }
 }
