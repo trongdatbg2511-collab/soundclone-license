@@ -4,5 +4,11 @@
     "owner": "11111",
     "expire_date": "2027-06-27",
     "issued": "2026-06-27"
+  },
+  "4QSILYW5": {
+    "hardware_id": "1111",
+    "owner": "SC-44F5-5A57-84A1-E10D",
+    "expire_date": "2027-06-27",
+    "issued": "2026-06-27"
   }
 }
