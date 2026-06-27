@@ -4,5 +4,11 @@
     "owner": "11111",
     "expire_date": "2027-06-27",
     "issued": "2026-06-27"
+  },
+  "TV5SHZNM": {
+    "hardware_id": "SC-SC-44F5-5A57-84A1-E10D",
+    "owner": "than trong dat",
+    "expire_date": "2026-07-27",
+    "issued": "2026-06-27"
   }
 }
