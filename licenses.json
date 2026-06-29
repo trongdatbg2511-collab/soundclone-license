@@ -58,5 +58,11 @@
     "owner": "cong ty",
     "expire_date": "2026-06-30",
     "issued": "2026-06-29"
+  },
+  "CG08GS2U": {
+    "hardware_id": "SC-44F5-5A57-84A1-E10D",
+    "owner": "may chu",
+    "expire_date": "2027-06-29",
+    "issued": "2026-06-29"
   }
 }
