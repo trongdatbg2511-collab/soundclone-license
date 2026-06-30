@@ -64,5 +64,11 @@
     "owner": "may chu",
     "expire_date": "2027-06-29",
     "issued": "2026-06-29"
+  },
+  "I98L8YNK": {
+    "hardware_id": "SC-B8B8-402F-C20C-FA8A",
+    "owner": "test",
+    "expire_date": "2026-07-02",
+    "issued": "2026-06-30"
   }
 }
