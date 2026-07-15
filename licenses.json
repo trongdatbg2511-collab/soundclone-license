@@ -82,5 +82,11 @@
     "owner": "xx",
     "expire_date": "2027-07-15",
     "issued": "2026-07-15"
+  },
+  "BLBJUQ46": {
+    "hardware_id": "SC-4575-AA63-8033-259A",
+    "owner": "xx",
+    "expire_date": "2026-08-14",
+    "issued": "2026-07-15"
   }
 }
