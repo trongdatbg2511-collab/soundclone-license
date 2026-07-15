@@ -70,5 +70,11 @@
     "owner": "test",
     "expire_date": "2026-07-02",
     "issued": "2026-06-30"
+  },
+  "VKS6H2L3": {
+    "hardware_id": "SC-4575-AA63-8033-259A",
+    "owner": "xx",
+    "expire_date": "2027-07-15",
+    "issued": "2026-07-15"
   }
 }
