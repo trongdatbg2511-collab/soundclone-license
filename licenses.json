@@ -88,5 +88,11 @@
     "owner": "xx",
     "expire_date": "2026-08-14",
     "issued": "2026-07-15"
+  },
+  "A7CMTVZS": {
+    "hardware_id": "SC-4575-AA63-8033-259A",
+    "owner": "a",
+    "expire_date": "2026-10-18",
+    "issued": "2026-07-20"
   }
 }
