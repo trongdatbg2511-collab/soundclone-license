@@ -94,5 +94,11 @@
     "owner": "a",
     "expire_date": "2026-10-18",
     "issued": "2026-07-20"
+  },
+  "OLAHT9L2": {
+    "hardware_id": "SC-9D38-0ABA-DDDF-7D92",
+    "owner": "a",
+    "expire_date": "2027-07-20",
+    "issued": "2026-07-20"
   }
 }
