@@ -16,5 +16,11 @@
     "owner": "tets",
     "expire_date": "2026-08-24",
     "issued": "2026-07-25"
+  },
+  "LM0XRJT2": {
+    "hardware_id": "QA-4041-C611-2543-05E2",
+    "owner": "tets",
+    "expire_date": "2126-07-01",
+    "issued": "2026-07-25"
   }
 }
