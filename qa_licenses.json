@@ -4,5 +4,11 @@
     "owner": "nam than",
     "expire_date": "2027-07-25",
     "issued": "2026-07-25"
+  },
+  "18TVLMQH": {
+    "hardware_id": "QA-4041-C611-2543-05E2",
+    "owner": "tets",
+    "expire_date": "2027-07-25",
+    "issued": "2026-07-25"
   }
 }
