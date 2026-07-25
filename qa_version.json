@@ -1,7 +1,7 @@
 {
-  "version": "2.0.0",
-  "url": "https://github.com/trongdatbg2511-collab/soundclone-license/releases/download/qa-v2.0.0/BaoCaoBatThuong-2.0.0.zip",
-  "notes": "(ghi ngắn gọn thay đổi của bản này)",
+  "version": "2.0.1",
+  "url": "https://github.com/trongdatbg2511-collab/soundclone-license/releases/download/qa-v2.0.1/BaoCaoBatThuong-2.0.1.zip",
+  "notes": "Sua loi: key vua cap phai cho vai phut moi dung duoc. Nay dung duoc ngay, va khong con bi xoa kich hoat oan.",
   "released": "2026-07-25",
-  "sha256": "ab0743e38f5f3db06ee7f2d504715535e049af3ffcb1a457039e6f78df3f83c9"
+  "sha256": "dbbbbd02bad391a62011c8230b49f4ec36d65ac9c3d930750641b02c732139c6"
 }
