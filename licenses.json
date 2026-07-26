@@ -100,5 +100,11 @@
     "owner": "a",
     "expire_date": "2027-07-20",
     "issued": "2026-07-20"
+  },
+  "56KIXN6I": {
+    "hardware_id": "SC-4575-AA63-8033-259A",
+    "owner": "a",
+    "expire_date": "2027-07-27",
+    "issued": "2026-07-27"
   }
 }
