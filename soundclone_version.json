@@ -1,7 +1,7 @@
 {
   "version": "0.3.3",
-  "url": "https://github.com/trongdatbg2511-collab/soundclone-license/releases/download/v0.3.3/SoundCloneLite-0.3.3.zip",
-  "notes": "Sửa nút nghe thử ở sidebar báo sai lỗi cho giọng hot dựng sẵn (dù file mẫu có sẵn).\nTự thử lại khi mạng đứt giữa lúc tải model, không phải tải lại từ đầu.",
-  "released": "2026-07-30",
+  "url": "<URL>",
+  "notes": "<mô tả thay đổi cho khách>",
+  "released": "<YYYY-MM-DD>",
   "sha256": "0bc8d077458c2f1fa58a8e172693ef3aad068030cfcaee94ce6beaec2ce3b3f1"
 }
