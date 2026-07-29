@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Cấp key SoundClone</title>
+<!--
+  trang_cap_key.html — Cấp license key từ điện thoại
+  ==================================================
+  ĐẶT Ở ĐÂU: đổi tên thành docs/index.html trong repo license, rồi bật
+  Settings -> Pages -> Source: main branch, thư mục /docs.
+  Địa chỉ sẽ là: https://<tài-khoản>.github.io/soundclone-license/
+
+  TOKEN NẰM Ở ĐÂU: chỉ trong trình duyệt điện thoại anh (localStorage), KHÔNG
+  nằm trong file này, KHÔNG gửi đi đâu ngoài api.github.com. Trang này công
+  khai nên tuyệt đối không ghi cứng token vào đây — ai mở cũng đọc được.
+
+  MẤT ĐIỆN THOẠI thì vào github.com/settings/tokens huỷ token đó là xong,
+  người nhặt được không làm gì thêm được.
+-->
+<style>
+  :root{
+    --nen:#111827; --the:#1f2937; --vien:#374151; --o:#0d1117;
+    --xanh:#059669; --xanh-dam:#047857; --chu:#f9fafb; --mo:#9ca3af;
+    --do:#ef4444; --vang:#f59e0b;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    margin:0;background:var(--nen);color:var(--chu);
+    font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);
+  }
+  .bọc{max-width:520px;margin:0 auto;padding:16px}
+  h1{font-size:20px;margin:8px 0 2px;display:flex;align-items:center;gap:8px}
+  .phụ{color:var(--mo);font-size:13px;margin:0 0 18px}
+  .thẻ{background:var(--the);border-radius:14px;padding:16px;margin-bottom:14px}
+  label{display:block;font-size:13px;color:var(--mo);margin:12px 0 6px}
+  input,select{
+    width:100%;padding:14px;font-size:16px;border-radius:10px;
+    border:1px solid var(--vien);background:var(--o);color:var(--chu);
+  }
+  input:focus,select:focus{outline:none;border-color:var(--xanh)}
+  button{
+    width:100%;padding:15px;font-size:16px;font-weight:600;border:0;
+    border-radius:10px;background:var(--xanh);color:#fff;margin-top:14px;
+  }
+  button:active{background:var(--xanh-dam)}
+  button:disabled{opacity:.5}
+  button.phụ2{background:transparent;border:1px solid var(--vien);color:var(--mo);
+    font-weight:400;padding:12px;font-size:14px}
+  .hàng{display:flex;gap:8px}
+  .hàng button{margin-top:0;flex:0 0 auto;width:auto;padding:14px 16px}
+  .hàng input{flex:1}
+  .key{
+    font:700 26px/1.3 ui-monospace,"SF Mono",Consolas,monospace;
+    letter-spacing:1px;color:var(--xanh);text-align:center;
+    padding:18px 8px;background:var(--o);border-radius:10px;
+    border:1px dashed var(--xanh);word-break:break-all;
+  }
+  .báo{padding:12px 14px;border-radius:10px;font-size:14px;margin-top:12px}
+  .báo.lỗi{background:#7f1d1d33;border:1px solid var(--do);color:#fca5a5}
+  .báo.ok{background:#064e3b33;border:1px solid var(--xanh);color:#6ee7b7}
+  .báo.chờ{background:#78350f33;border:1px solid var(--vang);color:#fcd34d}
+  .dòng{display:flex;justify-content:space-between;gap:10px;
+    padding:11px 0;border-bottom:1px solid var(--vien);font-size:14px}
+  .dòng:last-child{border-bottom:0}
+  .dòng b{font:600 14px ui-monospace,Consolas,monospace;color:var(--xanh)}
+  .dòng small{display:block;color:var(--mo);font-size:12px}
+  .tab{display:flex;gap:6px;margin-bottom:14px}
+  .tab button{margin:0;background:var(--the);color:var(--mo);font-size:14px;padding:11px}
+  .tab button.đang{background:var(--xanh);color:#fff}
+  .ẩn{display:none}
+  .ghi{font-size:12px;color:var(--mo);margin-top:10px;line-height:1.5}
+  a{color:var(--xanh)}
+</style>
+</head>
+<body>
+<div class="bọc">
+
+  <h1>🔑 Cấp key SoundClone</h1>
+  <p class="phụ" id="kho">—</p>
+
+  <div class="tab">
+    <button id="tabCap" class="đang" onclick="đổiTab('cap')">Cấp key</button>
+    <button id="tabTra" onclick="đổiTab('tra')">Tra cứu</button>
+    <button id="tabCai" onclick="đổiTab('cai')">Cài đặt</button>
+  </div>
+
+  <!-- ── Cấp key ── -->
+  <div id="mCap" class="thẻ">
+    <label>ID máy của khách</label>
+    <div class="hàng">
+      <input id="hw" placeholder="SC-XXXX-XXXX-XXXX-XXXX"
+             autocapitalize="characters" autocomplete="off" spellcheck="false">
+      <button class="phụ2" onclick="dánID()">Dán</button>
+    </div>
+
+    <label>Tên khách</label>
+    <input id="ten" placeholder="VD: Anh Nam - Bắc Giang" autocomplete="off">
+
+    <label>Thời hạn</label>
+    <select id="thang">
+      <option value="1">1 tháng (dùng thử)</option>
+      <option value="3">3 tháng</option>
+      <option value="6">6 tháng</option>
+      <option value="12" selected>12 tháng</option>
+      <option value="36">3 năm</option>
+      <option value="1200">Vĩnh viễn</option>
+    </select>
+
+    <button id="nutCap" onclick="cấpKey()">Cấp key</button>
+    <div id="kqCap"></div>
+  </div>
+
+  <!-- ── Tra cứu ── -->
+  <div id="mTra" class="thẻ ẩn">
+    <label>Tìm theo tên khách hoặc ID máy</label>
+    <input id="tim" placeholder="Gõ vài chữ là đủ" oninput="lọc()" autocomplete="off">
+    <div id="dsTra" style="margin-top:12px"></div>
+  </div>
+
+  <!-- ── Cài đặt ── -->
+  <div id="mCai" class="thẻ ẩn">
+    <label>Kho chứa danh sách key</label>
+    <input id="repo" placeholder="tài-khoản/soundclone-license" autocomplete="off">
+
+    <label>Token GitHub (quyền ghi)</label>
+    <input id="token" type="password" placeholder="github_pat_... hoặc ghp_..."
+           autocomplete="off">
+    <p class="ghi">
+      Tạo tại <b>github.com/settings/tokens</b> → Fine-grained token →
+      chọn <b>đúng repo này</b> → quyền <b>Contents: Read and write</b>.
+      Đừng cấp quyền rộng hơn mức đó.
+    </p>
+
+    <button onclick="lưuCài()">Lưu</button>
+    <button class="phụ2" onclick="xoáToken()">Xoá token khỏi máy này</button>
+
+    <p class="ghi">
+      Token chỉ nằm trong trình duyệt điện thoại này, không gửi đi đâu ngoài
+      GitHub. <b>Mất điện thoại</b> thì vào github.com/settings/tokens huỷ token
+      đó là xong.
+    </p>
+    <div id="kqCai"></div>
+  </div>
+
+  <p class="ghi">
+    Thêm vào màn hình chính: Safari bấm <b>Chia sẻ → Thêm vào MH chính</b>,
+    Chrome bấm <b>⋮ → Thêm vào màn hình chính</b>.
+  </p>
+</div>
+
+<script>
+"use strict";
+
+const K_TOKEN = "sc_token", K_REPO = "sc_repo";
+let DS = null, SHA = null;          // licenses.json đang có + sha để ghi đè
+
+const $ = id => document.getElementById(id);
+const repo  = () => (localStorage.getItem(K_REPO)  || "").trim();
+const token = () => (localStorage.getItem(K_TOKEN) || "").trim();
+
+// Base64 <-> UTF-8. btoa() thuần chỉ nuốt được Latin-1, mà tên khách tiếng
+// Việt có dấu -> phải qua TextEncoder, không thì "Đạt" thành ký tự lỗi.
+const mãHoá = s => btoa(String.fromCharCode(...new TextEncoder().encode(s)));
+const giảiMã = b => new TextDecoder().decode(
+  Uint8Array.from(atob(b.replace(/\s/g, "")), c => c.charCodeAt(0)));
+
+function báo(ô, loại, html){ $(ô).innerHTML = `<div class="báo ${loại}">${html}</div>`; }
+function xoáBáo(ô){ $(ô).innerHTML = ""; }
+
+function đổiTab(t){
+  for (const [n, m, b] of [["cap","mCap","tabCap"],["tra","mTra","tabTra"],["cai","mCai","tabCai"]]) {
+    $(m).classList.toggle("ẩn", n !== t);
+    $(b).classList.toggle("đang", n === t);
+  }
+  if (t === "tra") tảiDS().then(vẽDS).catch(e => báo("dsTra","lỗi", e.message));
+}
+
+function hiệnKho(){
+  const r = repo();
+  $("kho").textContent = r
+    ? (token() ? `Kho: ${r}` : `Kho: ${r} — CHƯA có token, vào Cài đặt`)
+    : "Chưa cài đặt — mở tab Cài đặt";
+}
+
+// ── Cài đặt ────────────────────────────────────────────────────────────────
+function lưuCài(){
+  const r = $("repo").value.trim().replace(/^https?:\/\/github\.com\//, "")
+                                  .replace(/\.git$/, "").replace(/\/+$/, "");
+  const t = $("token").value.trim();
+  if (!/^[\w.-]+\/[\w.-]+$/.test(r)) {
+    return báo("kqCai","lỗi","Kho phải có dạng <b>tài-khoản/tên-repo</b>");
+  }
+  localStorage.setItem(K_REPO, r);
+  if (t) localStorage.setItem(K_TOKEN, t);
+  $("token").value = "";
+  DS = null;                      // ép tải lại với kho/token mới
+  hiệnKho();
+  báo("kqCai","ok","Đã lưu. Thử bấm tab <b>Tra cứu</b> xem có đọc được danh sách không.");
+}
+
+function xoáToken(){
+  localStorage.removeItem(K_TOKEN);
+  DS = null; hiệnKho();
+  báo("kqCai","ok","Đã xoá token khỏi máy này. Nhớ vào GitHub huỷ token đó nữa.");
+}
+
+// ── Gọi GitHub ─────────────────────────────────────────────────────────────
+async function gọi(url, tuỳ = {}){
+  const h = {"Accept":"application/vnd.github+json", ...(tuỳ.headers||{})};
+  if (token()) h["Authorization"] = "Bearer " + token();
+  const r = await fetch(url, {...tuỳ, headers: h, cache: "no-store"});
+  if (!r.ok) {
+    let m = `GitHub trả về ${r.status}`;
+    if (r.status === 401) m = "Token sai hoặc đã bị huỷ — vào Cài đặt nhập lại.";
+    if (r.status === 403) m = "Token thiếu quyền ghi vào kho này.";
+    if (r.status === 404) m = "Không thấy kho hoặc file licenses.json.";
+    if (r.status === 409) m = "Có người vừa sửa danh sách. Bấm lại lần nữa.";
+    try { const j = await r.json(); if (j.message) m += ` (${j.message})`; } catch {}
+    throw new Error(m);
+  }
+  return r.json();
+}
+
+async function tảiDS(){
+  if (!repo()) throw new Error("Chưa cài đặt kho — mở tab Cài đặt.");
+  const j = await gọi(`https://api.github.com/repos/${repo()}/contents/licenses.json`);
+  SHA = j.sha;
+  DS = JSON.parse(giảiMã(j.content));
+  return DS;
+}
+
+// ── Cấp key ────────────────────────────────────────────────────────────────
+const CHỮ = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+function sinhMã(đã){
+  for (;;) {
+    let k = "";
+    const b = new Uint32Array(8);
+    crypto.getRandomValues(b);
+    for (let i = 0; i < 8; i++) k += CHỮ[b[i] % CHỮ.length];
+    if (!(k in đã)) return k;          // trùng thì bốc lại
+  }
+}
+
+function hạn(thang){
+  const d = new Date();
+  d.setDate(d.getDate() + thang * 30);
+  return d.toISOString().slice(0, 10);
+}
+const hômNay = () => new Date().toISOString().slice(0, 10);
+
+async function dánID(){
+  try {
+    const t = await navigator.clipboard.readText();
+    if (t) { $("hw").value = t.trim().toUpperCase(); xoáBáo("kqCap"); }
+  } catch {
+    báo("kqCap","chờ","Trình duyệt không cho đọc clipboard — dán tay vào ô trên.");
+  }
+}
+
+function hiệnKey(mã, phụ){
+  $("kqCap").innerHTML =
+    `<div class="key" id="oKey">${mã}</div>
+     <button onclick="chép('${mã}')">Copy để gửi Zalo</button>
+     <div class="báo ok">${phụ}</div>`;
+}
+
+async function chép(mã){
+  try { await navigator.clipboard.writeText(mã); alert("Đã copy: " + mã); }
+  catch { alert("Chạm giữ vào mã để copy tay."); }
+}
+
+async function cấpKey(){
+  const hw  = $("hw").value.trim().toUpperCase();
+  const ten = $("ten").value.trim();
+  const th  = parseInt($("thang").value, 10);
+  xoáBáo("kqCap");
+
+  // Kiểm tra dạng ID trước khi ghi. Khách hay copy thiếu hoặc dính khoảng
+  // trắng — bắt ở đây tốt hơn để họ nhập key rồi báo "không dành cho máy này".
+  if (!/^SC-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}$/.test(hw)) {
+    return báo("kqCap","lỗi",
+      "ID máy sai định dạng.<br>Phải là <b>SC-XXXX-XXXX-XXXX-XXXX</b>. " +
+      "Bảo khách bấm nút <b>Copy</b> trong app rồi gửi nguyên vẹn.");
+  }
+  if (!ten) return báo("kqCap","lỗi","Điền tên khách để sau còn tra cứu được.");
+  if (!token()) return báo("kqCap","lỗi","Chưa có token — mở tab <b>Cài đặt</b>.");
+
+  $("nutCap").disabled = true;
+  $("nutCap").textContent = "Đang cấp...";
+  try {
+    await tảiDS();
+
+    // Máy này đã có key còn hạn thì DÙNG LẠI. Cấp trùng chỉ làm rối danh sách,
+    // sau không biết key nào đang thật sự dùng.
+    for (const [mã, v] of Object.entries(DS)) {
+      if (v.hardware_id === hw && v.expire_date >= hômNay()) {
+        return hiệnKey("SC-" + mã,
+          `Máy này <b>đã có key</b> còn hạn tới ${v.expire_date}` +
+          `${v.owner ? " — " + v.owner : ""}. Không cấp thêm.`);
+      }
+    }
+
+    const mã = sinhMã(DS);
+    DS[mã] = {hardware_id: hw, owner: ten,
+              expire_date: hạn(th), issued: hômNay()};
+
+    await gọi(`https://api.github.com/repos/${repo()}/contents/licenses.json`, {
+      method: "PUT",
+      body: JSON.stringify({
+        message: `Cấp key cho ${ten}`,
+        content: mãHoá(JSON.stringify(DS, null, 2) + "\n"),
+        sha: SHA,
+      }),
+    });
+    DS = null;                                  // buộc tải lại lần sau
+    hiệnKey("SC-" + mã, `Đã lưu lên GitHub. Hết hạn ${hạn(th)} (${th} tháng).`);
+    $("hw").value = ""; $("ten").value = "";
+  } catch (e) {
+    báo("kqCap","lỗi", e.message);
+  } finally {
+    $("nutCap").disabled = false;
+    $("nutCap").textContent = "Cấp key";
+  }
+}
+
+// ── Tra cứu ────────────────────────────────────────────────────────────────
+function vẽDS(){
+  const q = $("tim").value.trim().toLowerCase();
+  const ds = Object.entries(DS || {})
+    .filter(([mã, v]) => !q ||
+      (v.owner || "").toLowerCase().includes(q) ||
+      (v.hardware_id || "").toLowerCase().includes(q) ||
+      mã.toLowerCase().includes(q))
+    .sort((a, b) => (b[1].issued || "").localeCompare(a[1].issued || ""))
+    .slice(0, 60);
+
+  if (!ds.length) return $("dsTra").innerHTML =
+    `<div class="báo chờ">Không có key nào khớp.</div>`;
+
+  $("dsTra").innerHTML = ds.map(([mã, v]) => {
+    const hết = (v.expire_date || "") < hômNay();
+    return `<div class="dòng">
+      <div>${v.owner || "—"}
+        <small>${v.hardware_id || "chưa gắn máy"}</small>
+        <small style="color:${hết ? "var(--do)" : "var(--mo)"}">
+          ${hết ? "hết hạn" : "còn hạn"} ${v.expire_date || "?"}</small>
+      </div>
+      <b>SC-${mã}</b>
+    </div>`;
+  }).join("");
+}
+function lọc(){ if (DS) vẽDS(); }
+
+// ── Khởi động ──────────────────────────────────────────────────────────────
+$("repo").value = repo();
+hiệnKho();
+if (!repo()) đổiTab("cai");
+</script>
+</body>
+</html>
