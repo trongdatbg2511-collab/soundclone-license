@@ -112,5 +112,11 @@
     "owner": "abc",
     "expire_date": "2027-07-27",
     "issued": "2026-07-27"
+  },
+  "UHQ6R2W6": {
+    "hardware_id": "SC-F165-3306-EA49-B197",
+    "owner": "Gg",
+    "expire_date": "2027-07-24",
+    "issued": "2026-07-29"
   }
 }
