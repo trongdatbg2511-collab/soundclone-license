@@ -1,7 +1,7 @@
 {
-  "version": "0.3.1",
-  "url": "https://github.com/trongdatbg2511-collab/soundclone-license/releases/download/v0.3.1/SoundCloneLite-0.3.1.zip",
-  "notes": "Thêm tiếng Anh (28 giọng) và tiếng Trung (8 giọng), mỗi giọng có mẫu nghe thử bấm là nghe ngay.\nSửa lỗi giọng đọc bị lặp, thừa một đoạn dài ở cuối rồi mất tiếng.\nSửa lỗi app đứng khi tải dữ liệu giọng lần đầu.\nGiảm dung lượng phải tải từ 2,1 GB xuống còn 1 GB.\nThể loại giờ áp đúng cả tốc độ đọc, không chỉ ngữ điệu.\nThêm nút nghe thử giọng cho từng vai ở chế độ Đối thoại.\nLọc giọng Nam/Nữ không còn làm sập danh sách.",
-  "released": "2026-07-29",
-  "sha256": "a242076933f828b20f94afdbcabef147dd2c98535d0222be4bf922c32bdbfa2a"
+  "version": "0.3.2",
+  "url": "https://github.com/trongdatbg2511-collab/soundclone-license/releases/download/v0.3.2/SoundCloneLite-0.3.2.zip",
+  "notes": "Sửa lỗi máy khách không tải được dữ liệu giọng (Access is denied) khi mở app không chạy quyền quản trị viên.",
+  "released": "2026-07-30",
+  "sha256": "b3754401a1d02d48748b638dc4adfbf6e6eb6350be59fee8b9f4537fed353cbb"
 }
