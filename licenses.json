@@ -118,5 +118,11 @@
     "owner": "Gg",
     "expire_date": "2027-07-24",
     "issued": "2026-07-29"
+  },
+  "2X2IAB8G": {
+    "hardware_id": "SC-1F38-CDC7-23A0-25E6",
+    "owner": "Công ty",
+    "expire_date": "2027-07-26",
+    "issued": "2026-07-31"
   }
 }
