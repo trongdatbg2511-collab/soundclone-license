@@ -124,5 +124,11 @@
     "owner": "Công ty",
     "expire_date": "2027-07-26",
     "issued": "2026-07-31"
+  },
+  "UJ17SOKD": {
+    "hardware_id": "SC-E5A5-D044-C39E-44FD",
+    "owner": "Hùng Trần",
+    "expire_date": "2026-09-02",
+    "issued": "2026-08-03"
   }
 }
