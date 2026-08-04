@@ -130,5 +130,11 @@
     "owner": "Hùng Trần",
     "expire_date": "2026-09-02",
     "issued": "2026-08-03"
+  },
+  "F08RKV4B": {
+    "hardware_id": "SC-B8B8-402F-C20C-FA8A",
+    "owner": "No name",
+    "expire_date": "2026-09-03",
+    "issued": "2026-08-04"
   }
 }
