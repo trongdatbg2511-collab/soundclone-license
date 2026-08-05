@@ -1,7 +1,7 @@
 {
-  "version": "0.3.3",
-  "url": "https://github.com/trongdatbg2511-collab/soundclone-license/releases/download/v0.3.3/SoundCloneLite-0.3.3.zip",
-  "notes": "Sửa nút nghe thử ở sidebar báo sai lỗi cho giọng hot dựng sẵn (dù file mẫu có sẵn).\nTự thử lại khi mạng đứt giữa lúc tải model, không phải tải lại từ đầu.",
-  "released": "2026-07-30",
-  "sha256": "0bc8d077458c2f1fa58a8e172693ef3aad068030cfcaee94ce6beaec2ce3b3f1"
+  "version": "0.3.4",
+  "url": "https://github.com/trongdatbg2511-collab/soundclone-license/releases/download/v0.3.4/SoundCloneLite-0.3.4.zip",
+  "notes": "Sửa lỗi mất chữ ở những đoạn hội thoại ngắn — trước đây câu như \"– Thưa không.\" hay \"– Đúng rồi!\" bị đọc lê thê, chen tiếng lạ, hoặc mất hẳn.\nSửa lỗi đọc được nửa câu rồi im vài giây và đọc lặp lại.\nKhi có đoạn đọc chưa ổn, app báo ngay trên dòng trạng thái thay vì chỉ ghi nhỏ trong nhật ký.",
+  "released": "2026-08-05",
+  "sha256": "f0b1829e22f7e45a7c73fa76d83ce046b82d5f4895ba5d9db99b5c3d31970c4d"
 }
