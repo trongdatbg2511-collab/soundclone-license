@@ -142,5 +142,11 @@
     "owner": "No name",
     "expire_date": "2026-09-04",
     "issued": "2026-08-05"
+  },
+  "UCJMHE9A": {
+    "hardware_id": "SC-B11E-CDC5-CE9C-7EE7",
+    "owner": "Huyhoang",
+    "expire_date": "2026-09-08",
+    "issued": "2026-08-09"
   }
 }
