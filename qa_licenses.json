@@ -34,5 +34,11 @@
     "owner": "công ty",
     "expire_date": "2027-09-01",
     "issued": "2026-09-01"
+  },
+  "Z69SGD6Q": {
+    "hardware_id": "QA-26B1-5E6A-DA20-8C8D",
+    "owner": "aa",
+    "expire_date": "2027-09-30",
+    "issued": "2026-09-30"
   }
 }
