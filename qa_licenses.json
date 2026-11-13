@@ -40,5 +40,11 @@
     "owner": "aa",
     "expire_date": "2027-09-30",
     "issued": "2026-09-30"
+  },
+  "P0GF47VR": {
+    "hardware_id": "QA-4E76-47B9-C952-2545",
+    "owner": "cong ty",
+    "expire_date": "2027-11-13",
+    "issued": "2026-11-13"
   }
 }
